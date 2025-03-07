@@ -1,0 +1,1984 @@
+-- 58p
+SELECT employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id
+FROM employees;
+
+-- 59p
+SELECT *
+FROM employees;
+
+-- 61p
+SELECT employee_id, first_name, email, phone_number, salary
+FROM employees; 
+
+-- 62p
+SELECT employee_id, first_name, salary
+FROM employees
+ORDER BY salary DESC;
+
+SELECT employee_id, first_name, salary
+FROM employees
+ORDER BY salary ASC;
+
+-- 63p
+SELECT employee_id, first_name, salary
+FROM employees
+ORDER BY salary;
+
+SELECT employee_id, first_name, salary
+FROM employees
+ORDER BY salary ASC, first_name;
+
+-- 64p
+SELECT commission_pct
+FROM employees
+ORDER BY commission_pct ASC;
+
+-- 65p
+SELECT commission_pct
+FROM employees
+ORDER BY commission_pct DESC;
+
+-- 66p
+SELECT commission_pct
+FROM employees
+WHERE commission_pct IS NOT NULL
+ORDER BY commission_pct DESC;
+
+-- 67p
+SELECT DISTINCT department_id
+FROM employees
+ORDER BY department_id;
+
+SELECT DISTINCT department_id, job_id
+FROM employees
+ORDER BY department_id;
+
+-- 69p
+SELECT first_name AS 이름, last_name AS 성, job_id AS 직무ID
+FROM employees;
+
+SELECT first_name 이름, last_name 성, job_id 직무ID
+FROM employees;
+
+-- 70p
+SELECT employee_id, salary, salary * 0.1
+FROM employees;
+
+SELECT employee_id, salary, salary * 0.1 AS 이달의보너스
+FROM employees;
+
+-- 71p
+SELECT employee_id, salary, salary * 0.1 Bonus of the month
+FROM employees;
+
+-- 72p
+SELECT employee_id, salary, salary * 0.1 "Bonus of the month"
+FROM employees;
+
+-- 73p
+SELECT 'Hello' || ' world' AS greeting
+FROM dual;
+
+SELECT first_name || ' ' || last_name AS full_name
+FROM employees;
+
+-- 74p
+SELECT email||'@ssamz.com' AS 이메일
+FROM employees;
+
+-- 75p
+SELECT lower(email)||'@ssamz.com' AS 이메일
+FROM employees;
+
+-- 76p
+SELECT salary, salary + 10, salary - 10, salary * 10, salary / 10
+FROM employees;
+
+SELECT salary, salary * 12 AS 연봉
+FROM employees;
+
+-- 77p
+SELECT salary, salary * 12 AS 연봉, commission_pct, salary * commission_pct AS "커미션이 적용된 급여"
+FROM employees;
+
+-- 78p
+SELECT salary, salary * 12 AS 연봉, commission_pct,
+salary * nvl(commission_pct, 1) AS "커미션이 적용된 급여"
+FROM employees;
+
+-- 79p
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE employee_id = 107;
+
+-- 80p
+SELECT first_name, salary
+FROM employees
+WHERE salary >= 15000;
+
+-- 81p
+SELECT first_name, commission_pct
+FROM employees
+WHERE commission_pct = NULL;
+
+-- 82p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id = 10;
+
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id = 20;
+
+-- 83p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id = 40;
+
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id IN (10, 20, 40);
+
+-- 84p
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date BETWEEN '02/01/01' AND '02/12/31';
+
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary BETWEEN 13000 AND 15000;
+
+-- 85p
+SELECT employee_id, first_name, salary
+FROM employees
+WHERE salary BETWEEN 15000 AND 13000;
+
+-- 86p
+SELECT employee_id, first_name
+FROM employees
+WHERE first_name LIKE 'Jo%';
+
+SELECT employee_id, first_name
+FROM employees
+WHERE first_name LIKE '_o____';
+
+-- 87p
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date LIKE '02%';
+
+-- 88p
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date LIKE '%/12/%';
+
+-- 89p
+SELECT employee_id, first_name, manager_id
+FROM employees
+WHERE manager_id IS NULL;
+
+SELECT employee_id, first_name, commission_pct
+FROM employees
+WHERE commission_pct IS NOT NULL;
+
+-- 90p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id = 50
+   AND salary >= 5000; 
+
+-- 91p
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date >= '02/01/01'
+   AND hire_date <= '02/12/31';
+
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date BETWEEN '02/01/01' AND '02/12/31';
+
+-- 92p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id = 10
+     OR department_id = 20
+     OR department_id = 40;
+
+-- 93p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id IN (10, 20, 40);
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id = 50
+     OR department_id = 80
+   AND salary >= 8000;
+
+-- 94p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id = 50;
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id = 80
+   AND salary >= 8000;
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE (department_id = 50
+     OR department_id = 80)
+   AND salary >= 8000;
+
+-- 95p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id != 50;
+
+-- 96p
+SELECT employee_id, first_name, department_id
+FROM employees
+WHERE department_id NOT IN (30, 50, 60, 80, 90, 100); 
+
+-- 97p
+SELECT employee_id, first_name, hire_date
+FROM employees
+WHERE hire_date NOT BETWEEN '02/01/01' AND '07/12/31'; 
+
+SELECT employee_id, first_name, job_id
+FROM employees
+WHERE job_id NOT LIKE '%IT%';
+
+-- 103p
+SELECT first_name, LOWER(first_name), UPPER(first_name)
+FROM employees;
+
+-- 106p
+SELECT email, LOWER(email), first_name, UPPER(first_name), last_name,
+INITCAP(last_name)
+FROM employees;
+
+-- 107p
+SELECT job_id, SUBSTR(job_id, 4)
+FROM employees;
+
+-- 108p
+SELECT job_id, SUBSTR(job_id, 1, 2)
+FROM employees;
+
+-- 109p
+SELECT first_name, INSTR(first_name, 'e')
+FROM employees
+WHERE first_name = 'Neena';
+
+SELECT first_name, INSTR(first_name, 'x') AS "x의 위치"
+FROM employees
+WHERE INSTR(first_name, 'x') > 0;
+
+-- 110p
+SELECT first_name || ' ' || last_name AS full_name1, CONCAT(first_name, last_name) AS full_name2
+FROM employees;
+
+-- 111p
+SELECT first_name || ' ' || last_name AS full_name1, CONCAT(CONCAT(first_name, ' '), last_name) AS full_name2
+FROM employees;
+
+SELECT CONCAT(first_name, salary)
+FROM employees;
+
+-- 112p
+SELECT first_name, LENGTH(first_name)
+FROM employees
+WHERE LENGTH(first_name) <= 3;
+
+-- 113p
+SELECT TRIM(' hello world ') 
+FROM dual;
+
+-- 114p
+SELECT TRIM(LEADING ' ' FROM ' hello world ') 
+FROM dual;
+
+SELECT first_name, TRIM(LEADING 'E' FROM first_name)
+FROM employees
+WHERE first_name LIKE 'E%';
+
+-- 115p
+SELECT LTRIM(' hello world ') 
+FROM dual;
+
+SELECT TRIM(LEADING ' ' FROM ' hello world ') 
+FROM dual;
+
+SELECT LTRIM('###hello world ', '#') 
+FROM dual;
+
+-- 116p
+SELECT REPLACE('Hello World', 'World', 'SQL')
+FROM dual;
+
+SELECT phone_number, REPLACE(phone_number, '.', '-')
+FROM employees;
+
+-- 117p
+SELECT email, LPAD(email, 15, '-'), RPAD(email, 15, '-')
+FROM employees;
+
+-- 118p
+SELECT email, LPAD(email, 15, '123')
+FROM employees;
+
+-- 119p
+SELECT REGEXP_SUBSTR('sking@ssamz.com', '@[^.]+\.[^.]+', 1, 1) AS result
+FROM dual;
+
+-- 120p
+SELECT REGEXP_SUBSTR('Hello, world!', '[^ ]+', 1, 1) AS result
+FROM dual;
+
+SELECT REGEXP_REPLACE('abc123def456ghi789', '[^[:digit:]]') AS result
+FROM dual;
+
+-- 121p
+SELECT REGEXP_REPLACE('Hello, World!', '[ ,!]', '') AS result
+FROM dual;
+
+SELECT REGEXP_REPLACE('Hello oracle Sql syntax', '(\s|^)[A-Z][a-z]*($|\s)', ' ') AS result
+FROM dual;
+
+-- 122p
+SELECT ABS(10), ABS(-10), ABS(0)
+FROM dual;
+
+-- 123p
+SELECT CEIL(12), CEIL(12.00), CEIL(12.25)
+FROM dual;
+
+SELECT CEIL(-12), CEIL(-12.00), CEIL(-12.25)
+FROM dual;
+
+-- 124p
+SELECT FLOOR(12), FLOOR(12.00), FLOOR(12.25)
+FROM dual;
+
+SELECT FLOOR(-12), FLOOR(-12.00), FLOOR(-12.25)
+FROM dual;
+
+-- 125p
+SELECT MOD(7, 3), MOD(10, 2), MOD(-5, 2)
+FROM dual;
+
+SELECT POWER(4, 3) AS result
+FROM dual;
+
+-- 126p
+SELECT SIGN(10), SIGN(-10), SIGN(0), SIGN(10.23)
+FROM dual;
+
+SELECT SQRT(16), SQRT(10), SQRT(0), SQRT(16.05)
+FROM dual;
+
+-- 127p
+SELECT SQRT(16), SQRT(10), SQRT(0), SQRT(16.05), SQRT(-16)
+FROM dual;
+
+-- 128p
+SELECT ROUND(123.456, 2), ROUND(123.456, -1)
+FROM dual;
+
+SELECT first_name, commission_pct, ROUND(commission_pct, 1)
+FROM employees
+WHERE commission_pct IS NOT NULL;
+
+-- 129p
+SELECT TRUNC(3.14159) AS trunc1, TRUNC(3.14159, 2) AS trunc2, TRUNC(12345.6789, -3) AS trunc3
+FROM dual;
+
+SELECT first_name, commission_pct, TRUNC(commission_pct, 0), TRUNC(commission_pct, 1)
+FROM employees
+WHERE commission_pct IS NOT NULL;
+
+-- 131p
+SELECT SYSDATE, CURRENT_DATE, LOCALTIMESTAMP
+FROM dual;
+
+-- 132p
+ALTER SESSION SET NLS_DATE_FORMAT = 'YYYY/MM/DD HH24:MI:SS';
+
+ALTER SESSION SET NLS_DATE_FORMAT = 'YY/MM/DD';
+
+-- 133p
+SELECT ADD_MONTHS('25/01/31', 1), ADD_MONTHS('25/02/28', 1)
+FROM dual;
+
+SELECT hire_date, ADD_MONTHS(hire_date, 6), ADD_MONTHS(hire_date, -6)
+FROM employees;
+
+-- 134p
+SELECT hire_date,
+MONTHS_BETWEEN(SYSDATE, hire_date),
+MONTHS_BETWEEN(hire_date, SYSDATE)
+FROM employees;
+
+-- 135p
+SELECT hire_date, TRUNC(MONTHS_BETWEEN(SYSDATE, hire_date)/12)||'년 차' AS "근속 연수"
+FROM employees;
+
+-- 136p
+SELECT NEXT_DAY('25/03/03', 'SATURDAY')
+FROM dual;
+
+-- 137p
+SELECT NEXT_DAY('25/03/03', '토요일')
+FROM dual;
+
+SELECT hire_date, NEXT_DAY(hire_date, '월요일'), NEXT_DAY(hire_date, '월')
+FROM employees;
+
+-- 138p
+ALTER SESSION SET NLS_DATE_LANGUAGE='ENGLISH';
+
+SELECT hire_date, NEXT_DAY(hire_date, 'MONDAY'), NEXT_DAY(hire_date, 'MON')
+FROM employees;
+
+SELECT hire_date, NEXT_DAY(hire_date, 1)
+FROM employees;
+
+-- 139p
+SELECT hire_date, LAST_DAY(hire_date)
+FROM employees;
+
+-- 140p
+SELECT first_name, hire_date, LAST_DAY(hire_date)
+FROM employees
+WHERE SUBSTR(LAST_DAY(hire_date), 7, 2) = '29';
+
+-- 141p
+SELECT SYSDATE, ROUND(SYSDATE, 'YEAR'), ROUND(SYSDATE, 'Q'), ROUND(SYSDATE, 'MONTH')
+FROM dual;
+
+SELECT SYSDATE, TRUNC(SYSDATE, 'YEAR'), TRUNC(SYSDATE, 'Q'), TRUNC(SYSDATE, 'MONTH')
+FROM dual;
+
+-- 142p
+SELECT EXTRACT(YEAR FROM SYSDATE), EXTRACT(MONTH FROM SYSDATE), EXTRACT(DAY FROM SYSDATE)
+FROM dual;
+
+-- 143p
+SELECT '10' + 5, CONCAT('결과 : ', 15)
+FROM dual;
+
+-- 144p
+SELECT TO_CHAR(SYSDATE, 'yyyy-MM-dd HH:mm:ss') AS "현재시간"
+FROM dual;
+
+-- 145~146p
+SELECT TO_CHAR(SYSDATE, 'YEAR') AS 년1,
+           TO_CHAR(SYSDATE, 'YYYY') AS 년2,
+           TO_CHAR(SYSDATE, 'Q') AS 분기,
+           TO_CHAR(SYSDATE, 'MONTH') AS 월1,
+           TO_CHAR(SYSDATE, 'MON') AS 월2,
+           TO_CHAR(SYSDATE, 'MM') AS 월3,
+           TO_CHAR(SYSDATE, 'DAY') AS 요일1,
+           TO_CHAR(SYSDATE, 'DY') AS 요일,
+           TO_CHAR(SYSDATE, 'AM') AS "오전/오후",
+           TO_CHAR(SYSDATE, 'HH24') AS 시,
+           TO_CHAR(SYSDATE, 'MI') AS 분,
+           TO_CHAR(SYSDATE, 'SS') AS 초
+from dual;
+
+ALTER SESSION SET NLS_LANGUAGE='ENGLISH';
+
+SELECT first_name, hire_date, TO_CHAR(hire_date, 'YYYY-MON-DD')
+FROM employees;
+
+-- 147p
+SELECT TO_CHAR(1234, '999,999'), TO_CHAR(1234, '099,999'), TO_CHAR(123.4, '999.999'), TO_CHAR(1234, 'L999,999')
+FROM dual;
+
+-- 148p
+SELECT first_name, salary, TO_CHAR(salary, '9,999,999')
+FROM employees;
+
+-- 149p
+SELECT TO_CHAR(12345, '999999'), TO_NUMBER('12345')
+FROM dual;
+
+SELECT first_name, hire_date
+FROM employees
+WHERE TO_DATE('2008:03:01', 'YY/MM/DD') < hire_date;
+
+-- 150p
+SELECT first_name, hire_date
+FROM employees
+WHERE TO_DATE('2008:03:01', 'YY/MM/DD') < hire_date;
+
+-- 151p
+SELECT commission_pct, NVL(commission_pct, 0)
+FROM employees;
+
+SELECT commission_pct, NVL(commission_pct, '없음')
+FROM employees;
+
+-- 152p
+SELECT first_name, 
+DECODE(job_id, 'AD_PRES', 'Executive',
+                                     'AD_VP', 'Executive',
+                                     'IT_PROG', 'Technical',
+                                     'ST_CLERK', 'Support',
+                                     'Other') AS "직무분류"
+FROM employees;
+
+-- 154p
+SELECT first_name, job_id, salary, 
+DECODE(SUBSTR(job_id, 1, 2), 'SA', salary + (salary * 0.3),
+                                         'PU', salary + (salary * 0.2),
+                                         'ST', salary + (salary * 0.1),
+                                         salary) AS "조정급여"
+FROM employees;
+
+-- 155p
+SELECT first_name, commission_pct, 
+CASE 
+    WHEN (commission_pct IS NULL) THEN '없음'
+    WHEN (commission_pct >= 0.3) THEN '높음'
+ELSE '낮음'
+END AS "커미션레벨"
+FROM employees;
+
+-- 156p
+SELECT first_name, salary,
+          RANK() OVER(ORDER BY salary DESC) RANK순위,
+          DENSE_RANK() OVER(ORDER BY salary DESC) DENSE_RANK순위,
+          ROW_NUMBER() OVER(ORDER BY salary DESC) ROW_NUMBER순위
+FROM employees;
+
+-- 158p
+SELECT first_name, department_id, salary,
+          RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) RANK순위,
+          DENSE_RANK() OVER(PARTITION BY department_id ORDER BY salary DESC) DENSE_RANK순위,
+          ROW_NUMBER() OVER(PARTITION BY department_id ORDER BY salary DESC) ROW_NUMBER순위
+FROM employees;
+
+-- 159p
+SELECT COUNT(salary) AS "급여를 받는 직원수",
+           COUNT(commission_pct) AS "커미션을 받는 직원수",
+           SUM(salary) AS "급여 총합",
+           AVG(salary) AS "급여 평균",
+           MAX(salary) AS "최대 급여",
+           MIN(salary) AS "최소 급여"
+FROM employees;
+
+-- 160p
+SELECT AVG(salary) AS "급여 평균"
+FROM employees;
+
+SELECT AVG(salary) AS "급여 평균"
+FROM employees
+GROUP BY department_id;
+
+-- 161p
+SELECT department_id, AVG(salary) AS "급여 평균"
+FROM employees
+GROUP BY department_id;
+
+-- 163p
+SELECT department_id, job_id, AVG(salary) AS "급여 평균"
+FROM employees
+GROUP BY department_id, job_id;
+
+SELECT department_id, job_id, AVG(salary) AS "급여 평균"
+FROM employees
+GROUP BY department_id, job_id
+ORDER BY department_id ASC;
+
+-- 165p
+SELECT job_id, AVG(salary)
+FROM employees
+GROUP BY job_id
+HAVING AVG(salary) > 10000;
+
+-- 172p
+SELECT first_name, employees.department_id, departments.department_id, department_name
+FROM employees
+JOIN departments
+ON employees.department_id = departments.department_id;
+
+-- 173p
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e
+JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 174p
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e, departments d
+WHERE e.department_id = d.department_id;
+
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e
+CROSS JOIN departments d;
+
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e, departments d;
+
+-- 176p
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e
+LEFT OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 177p
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e, departments d
+WHERE e.department_id = d.department_id(+);
+
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e
+RIGHT OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 178p
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e, departments d
+WHERE e.department_id(+) = d.department_id;
+
+SELECT e.first_name, e.department_id, d.department_id, d.department_name
+FROM employees e
+FULL OUTER JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 180p
+SELECT e1.employee_id, e1.first_name, e1.manager_id, e2.first_name
+FROM employees e1
+JOIN employees e2
+ON e1.manager_id = e2.employee_id;
+
+-- 181p
+SELECT e1.employee_id, e1.first_name, e1.manager_id, e2.first_name
+FROM employees e1
+LEFT OUTER JOIN employees e2
+ON e1.manager_id = e2.employee_id;
+
+-- 182p
+-- 급여 등급(SALGRADE) 테이블을 생성한다.
+CREATE TABLE salgrade (
+    GRADE NUMBER(2) NOT NULL,
+    LOSAL NUMBER(8) NOT NULL,
+    HISAL NUMBER(8) NOT NULL,
+    CONSTRAINT PK_salgrade PRIMARY KEY (GRADE)
+);
+-- 급여 등급(SALGRADE) 테이블에 데이터를 등록한다.
+INSERT INTO salgrade VALUES(1, 30001, 50000);
+INSERT INTO salgrade VALUES(2, 10001, 30000);
+INSERT INTO salgrade VALUES(3, 5001, 10000);
+INSERT INTO salgrade VALUES(4, 3001, 5000);
+INSERT INTO salgrade VALUES(5, 0, 3000);
+
+-- 183p
+SELECT e.employee_id, e.first_name, e.salary, g.grade
+FROM employees e
+JOIN salgrade g
+ON e.salary BETWEEN g.losal AND g.hisal
+ORDER BY e.employee_id;
+
+-- 185p
+SELECT e.first_name || ' ' || e.last_name AS "직원 이름", COUNT(*) AS "직무 변경 횟수"
+FROM employees e
+JOIN job_history jh ON e.employee_id = jh.employee_id
+GROUP BY e.first_name, e.last_name
+ORDER BY "직무 변경 횟수" DESC;
+
+-- 186p
+SELECT c.country_name AS "국가", COUNT(*) AS "직원수"
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+JOIN countries c ON l.country_id = c.country_id
+GROUP BY c.country_name
+ORDER BY "직원수" DESC;
+
+SELECT c.country_name AS "국가", COUNT(*) AS "직원수"
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+JOIN countries c ON l.country_id = c.country_id
+GROUP BY c.country_name
+ORDER BY "직원수" DESC
+FETCH FIRST 1 ROWS ONLY;
+
+-- 187p
+SELECT e.first_name, c.country_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+JOIN locations l ON d.location_id = l.location_id
+RIGHT OUTER JOIN countries c ON l.country_id = c.country_id;
+
+-- 190p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000
+UNION
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90; 
+
+-- 191p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000;
+
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90;
+
+-- 192p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000
+UNION ALL
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90;
+
+-- 193p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000
+UNION ALL
+SELECT first_name, salary, last_name
+FROM employees
+WHERE department_id >= 90;
+
+-- 194p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000
+INTERSECT
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90;
+
+-- 195p
+SELECT department_id
+FROM employees
+INTERSECT
+SELECT department_id
+FROM departments;
+
+SELECT department_id
+FROM employees
+INTERSECT
+SELECT department_id
+FROM departments
+ORDER BY department_id;
+
+-- 196p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90
+MINUS
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000;
+
+-- 197p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE salary >= 15000
+MINUS
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id >= 90;
+
+-- 200p
+SELECT department_id
+FROM departments
+WHERE department_name = 'IT';
+
+-- 201p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id = 60;
+
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id = (SELECT department_id
+                                FROM departments
+                                WHERE department_name = 'IT');
+-- 202p
+SELECT first_name, salary, department_id
+FROM employees
+WHERE department_id = (SELECT department_id
+                                FROM departments
+                                WHERE department_name = 'IT');
+
+SELECT e1.first_name, e1.last_name, e1.salary
+FROM employees e1
+WHERE e1.salary = (SELECT MIN(e2.salary)
+                         FROM employees e2
+                         WHERE e2.department_id = e1.department_id);
+
+-- 204p
+SELECT first_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) 
+                     FROM employees);
+
+-- 205p
+SELECT first_name, salary
+FROM employees
+WHERE salary = (SELECT MAX(salary)
+                     FROM employees);
+
+SELECT department_id, AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > (SELECT AVG(salary)
+                             FROM employees);
+
+-- 206p
+SELECT department_id, AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > (SELECT AVG(salary) 
+                             FROM employees)
+ORDER BY department_id ASC;
+
+SELECT NVL(department_id, 0), AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > (SELECT AVG(salary) 
+                             FROM employees)
+ORDER BY department_id ASC;
+
+-- 207p
+SELECT department_id, AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) > (SELECT AVG(salary) 
+                             FROM employees)
+ORDER BY department_id ASC, AVG(salary) ASC;
+
+SELECT first_name, department_id
+FROM employees
+WHERE department_id = (SELECT department_id
+                                FROM employees
+                                WHERE first_name = 'Neena');
+
+-- 208p
+SELECT first_name, department_id
+FROM employees
+WHERE department_id = (SELECT department_id
+                                FROM employees
+                                WHERE first_name = 'Alexander');
+
+-- 209p
+SELECT department_id
+FROM employees
+WHERE first_name = 'Alexander';
+
+SELECT first_name, department_id
+FROM employees
+WHERE department_id IN (SELECT department_id
+                                 FROM employees
+                                 WHERE first_name = 'Alexander');
+
+-- 210p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id IN (SELECT department_id
+                                 FROM departments
+                                 WHERE department_name LIKE '%ing');
+
+-- 211p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE department_id NOT IN (SELECT department_id
+                                        FROM departments
+                                        WHERE department_name LIKE '%ing');
+
+-- 212p
+SELECT e.employee_id, e.first_name
+FROM employees e
+WHERE EXISTS (SELECT *
+                    FROM departments d
+                    WHERE d.manager_id = e.employee_id);
+
+-- 213p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > ANY (SELECT salary
+                            FROM employees
+                            WHERE job_id = 'IT_PROG');
+
+-- 214p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > 4200
+     OR salary > 4800
+     OR salary > 6000
+     OR salary > 9000;
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > 4200;
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary < ANY (SELECT salary
+                            FROM employees
+                            WHERE job_id = 'IT_PROG');
+
+-- 215p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > ALL (SELECT salary
+                           FROM employees
+                           WHERE job_id = 'IT_PROG');
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > 4200
+   AND salary > 4800
+   AND salary > 6000
+   AND salary > 9000;
+
+-- 216p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary > 9000;
+
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary < ALL (SELECT salary
+                           FROM employees
+                           WHERE job_id = 'IT_PROG');
+
+-- 217p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE salary IN (SELECT MIN(salary)
+                      FROM employees
+                      GROUP BY department_id);
+
+-- 218p
+SELECT first_name, department_id, salary
+FROM employees
+WHERE (department_id, salary) IN (SELECT department_id, MIN(salary)
+                                            FROM employees
+                                            GROUP BY department_id);
+
+-- 219p
+SELECT first_name, salary
+FROM employees
+WHERE salary < (SELECT AVG(salary)
+                     FROM employees);
+
+-- 220p
+SELECT first_name, salary, TRUNC((SELECT AVG(salary) FROM employees)) AS "평균급여"
+FROM employees
+WHERE salary < (SELECT AVG(salary)
+FROM employees);
+
+-- 221p
+SELECT d.department_name, e.first_name, e.salary
+FROM departments d
+JOIN (SELECT department_id, first_name, salary
+       FROM employees
+       WHERE salary > (SELECT AVG(salary) 
+                            FROM employees)) e
+ON d.department_id = e.department_id
+ORDER BY d.department_name;
+
+-- 222p
+SELECT department_id, first_name, salary
+FROM employees
+WHERE salary > (SELECT AVG(salary) FROM employees);
+
+-- 227p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+VALUES (1001, 'John', 'Doe', 'jdoe@example.com', '123-456-7890', SYSDATE, 'IT_PROG', 5000, 0.1, 100, 60);
+
+SELECT employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id
+FROM employees;
+
+-- 228p
+INSERT INTO employees VALUES (1002, 'Gil Dong', 'Hong', 'hong@example.com', '123-456-7890', SYSDATE, 'IT_PROG', 4800, 0.1, 100, 60);
+
+-- 229p
+INSERT INTO employees VALUES (1003, 'Dooly', 'Park', 'Park@example.com', SYSDATE, 'IT_PROG');
+
+INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id)
+VALUES (1003, 'Dooly', 'Park', 'Park@example.com', SYSDATE, 'IT_PROG');
+
+-- 230p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id) 
+VALUES (1005, 'Hee-dong', 'Kim', 'Kim@example.com', '123-456-7892', SYSDATE, IT_PROG);
+
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id)
+VALUES (1005, 'Hee-dong', 'Kim', 'Kim@example.com', '123-456-7892', SYSDATE, 'IT_PROG');
+
+-- 231p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id, salary, commission_pct, manager_id, department_id)
+VALUES (1004, 'Ttochi', 'Choi', 'Choi@example.com', NULL, SYSDATE, 'IT_PROG', NULL, NULL, NULL, NULL);
+
+-- 232p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id)
+VALUES (1006, 'Dounor', 'Lee', 'Lee@example.com', '123-456-7892', SYSDATE, NULL);
+
+-- 233p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date)
+VALUES (1006, 'Dounor', 'Lee', 'Lee@example.com', '123-456-7892', SYSDATE);
+
+-- 데이터 등록을 영구적으로 반영한다.
+COMMIT;
+
+-- 234p
+SELECT *
+FROM employees;
+
+-- 235p
+UPDATE employees
+SET phone_number = '111-222-3333',
+     salary = 5000;
+
+-- 236p
+-- 데이터를 UPDATE 이전 상태로 되돌린다.
+ROLLBACK;
+
+-- 데이터가 원래대로 복구됐는지 확인한다.
+SELECT * FROM employees;
+
+UPDATE employees
+SET salary = 5000,
+     phone_number = '111-222-3333'
+WHERE employee_id = 1005;
+
+-- 237p
+SELECT department_id
+FROM departments
+WHERE department_name = 'IT';
+
+UPDATE employees
+SET salary = salary + (salary / 100)
+WHERE department_id = (SELECT department_id
+                                FROM departments
+                                WHERE department_name = 'IT');
+
+UPDATE employees
+SET salary = (SELECT AVG(salary)
+                 FROM employees
+                 WHERE department_id = (SELECT department_id
+                                                 FROM departments
+                                                 WHERE department_name = 'Sales'))
+WHERE department_id = (SELECT department_id
+                                FROM departments
+                                WHERE department_name = 'IT');
+
+-- 238p
+UPDATE employees
+SET salary = (SELECT AVG(salary)
+                FROM employees
+                WHERE department_id = 80)
+WHERE department_id = 60);
+
+UPDATE employees
+SET job_id = NULL
+WHERE employee_id = 1005;
+
+ROLLBACK;
+
+-- 239p
+DELETE FROM employees;
+
+-- 240p
+DELETE FROM employees
+WHERE employee_id = 1005;
+
+DELETE FROM employees
+WHERE department_id = (SELECT department_id
+                                FROM departments
+                                WHERE department_name = 'Government Sales');
+
+DELETE FROM employees
+WHERE hire_date = (SELECT hire_date
+                         FROM employees
+                         WHERE first_name = 'Dooly');
+
+-- 241p
+COMMIT;
+
+DELETE FROM employees
+WHERE department_id = 60;
+
+-- 246p
+INSERT INTO departments (department_id, department_name, manager_id, location_id)
+VALUES (1001, NULL, 123, 1500);
+
+INSERT INTO departments (department_id, manager_id, location_id)
+VALUES (1001, 123, 1500);
+
+INSERT INTO departments (department_id, department_name, manager_id, location_id)
+VALUES (1001, 'Education', 123, 1500);
+
+-- 247p
+UPDATE departments
+SET location_id = 1700,
+     department_name = NULL
+WHERE department_id = 1001;
+
+-- 248p
+INSERT INTO employees (employee_id, first_name, last_name, email, phone_number, hire_date, job_id)
+VALUES (1006, 'Micol', 'Kim', 'Kim@example.com', '123-456-7777', SYSDATE, 'IT_PROG');
+
+-- 249p
+UPDATE employees
+SET email = 'Kim@example.com'
+WHERE employee_id = 1004;
+
+-- 250p
+SELECT first_name, COUNT(first_name)
+FROM employees
+GROUP BY first_name
+HAVING COUNT(first_name) >= 2;
+
+-- 252p
+UPDATE departments
+SET department_id = 1000
+WHERE department_id = 10;
+
+-- 253p
+DELETE departments
+WHERE department_id = 50;
+
+-- 255p
+INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id, department_id)
+VALUES (1006, 'Micol', 'Kim', 'Park@example.com', SYSDATE, 'IT_PROG', 1000);
+
+-- 256p
+INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id, department_id)
+VALUES (1006, 'Micol', 'Kim', 'Park@example.com', SYSDATE, 'IT_PROG', 60);
+
+UPDATE employees
+SET department_id = 1000
+WHERE employee_id = 1006;
+
+-- 257p
+INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id, salary)
+VALUES (1007, 'Tester', 'Lee', 'Lee@example.com', SYSDATE, 'IT_PROG', 0);
+
+-- 258p
+INSERT INTO job_history(employee_id, start_date, end_date, job_id, department_id)
+SELECT employee_id, SYSDATE, hire_date, job_id, department_id
+FROM employees
+WHERE employee_id = 107;
+
+-- 259~260p
+CREATE TABLE employees (
+    employee_id NUMBER(6),
+    first_name VARCHAR2(20),
+    last_name VARCHAR2(25) NOT NULL,
+    email VARCHAR2(25) NOT NULL,
+    phone_number VARCHAR2(20),
+    hire_date DATE DEFAULT SYSDATE,  
+    job_id VARCHAR2(10) NOT NULL,
+    salary NUMBER(8,2),
+    commission_pct NUMBER(2,2),
+    manager_id NUMBER(6),
+    department_id NUMBER(4) DEFAULT 40
+);
+
+-- 266p
+SELECT employee_id, salary 
+FROM employees 
+WHERE employee_id IN (100, 101);
+
+UPDATE employees 
+SET salary = 20000 
+WHERE employee_id = 100;
+
+SELECT employee_id, salary 
+FROM employees 
+WHERE employee_id IN (100, 101);
+
+UPDATE employees 
+SET salary = 21000 
+WHERE employee_id = 101;
+
+SELECT employee_id, salary 
+FROM employees 
+WHERE employee_id IN (100, 101);
+
+-- 267p
+COMMIT;
+
+-- 268p
+SELECT * 
+FROM employees 
+WHERE first_name = 'Tester';
+
+DELETE FROM employees 
+WHERE first_name = 'Tester';
+
+TRUNC TABLE salgrade;
+
+ROLLBACK;
+
+SELECT * 
+FROM employees 
+WHERE first_name = 'Tester';
+
+-- 269p
+-- 1006번 직원을 검색한다.
+SELECT * FROM employees WHERE employee_id = 1006;
+
+-- 1006번 직원의 급여를 17000으로 수정한다.
+UPDATE employees SET salary = 17000 WHERE employee_id = 1006;
+
+-- 270
+-- 1006번 직원을 검색한다.
+SELECT * 
+FROM employees 
+WHERE employee_id = 1006;
+
+-- 1006번 직원의 급여를 2000으로 수정한다.
+UPDATE employees 
+SET salary = 2000 
+WHERE employee_id = 1006;
+
+-- 271p
+-- 1006번 직원을 검색한다.
+SELECT employee_id, salary 
+FROM employees 
+WHERE employee_id = 1006;
+
+-- 1006번 직원의 급여를 17000으로 수정한다.
+UPDATE employees 
+SET salary = 17000 
+WHERE employee_id = 1006;
+
+-- 트랜잭션을 종료한다.
+COMMIT;
+
+-- 275p
+-- employees_tmp 테이블을 생성한다.
+CREATE TABLE employees_tmp (
+    employee_id NUMBER(6),
+    first_name VARCHAR2(20) NOT NULL,
+    last_name VARCHAR2(20) NOT NULL,
+    email VARCHAR2(50),
+    hire_date DATE NOT NULL,
+    salary NUMBER(8,2)
+);
+
+-- 276p
+INSERT INTO employees_tmp (employee_id, first_name, last_name, email, hire_date, salary)
+VALUES (1001, 'Dooly', 'Jung', 'Jung@example.com', SYSDATE, 2500);
+
+COMMIT;
+
+SELECT * 
+FROM employees_tmp;
+
+-- 278p
+-- test_char 테이블을 생성한다.
+CREATE TABLE test_char(
+    col1 CHAR(5),
+    col2 VARCHAR2(5),
+    col3 CLOB
+);
+
+INSERT INTO test_char (col1) 
+VALUES('AB'); -- col1에 ' AB' 등록
+
+-- 279p
+SELECT *
+FROM test_char;
+
+INSERT INTO TEST_CHAR (col1) 
+VALUES('ABCDEF');
+
+INSERT INTO TEST_CHAR (col1, col2) 
+VALUES('AB', 'AB'); -- col2에 'AB' 등록
+
+-- 280p
+INSERT INTO TEST_CHAR (col1, col2, col3) 
+VALUES('AB', 'AB', 'SQL 책의 모든 텍스트');
+-- col3에 'SQL 책의 모든 텍스트' 등록
+
+-- 281p
+-- test_ number 테이블을 생성한다.
+CREATE TABLE test_number(
+    col1 NUMBER,
+    col2 NUMBER(2),
+    col3 NUMBER(2, 2),
+    col4 NUMBER(4, 2),
+    col5 NUMBER(4, -1)
+);
+
+INSERT INTO test_number (col1) 
+VALUES(123); -- col1에 123 등록
+
+INSERT INTO test_number (col2) 
+VALUES(12); -- col2에 12 등록
+
+SELECT *
+FROM test_number;
+
+INSERT INTO test_number (col3) 
+VALUES(0.34); -- col3에 0.34 등록
+
+-- 282p
+INSERT INTO test_number (col4) 
+VALUES(12.34); -- col4에 12.34 등록 
+
+INSERT INTO test_number (col4) 
+VALUES(12.345); -- col4에 12.35 등록
+
+INSERT INTO test_number (col5) 
+VALUES(123.456);
+
+-- 283p
+CREATE TABLE test_date(
+    col1 DATE,
+    col2 TIMESTAMP
+);
+
+INSERT INTO TEST_DATE (col1, col2) 
+VALUES(SYSDATE, SYSDATE);
+
+SELECT * 
+FROM TEST_DATE;
+
+-- 284p
+CREATE TABLE test_blob (
+    id NUMBER,
+    image_file BLOB,
+    CONSTRAINT PK_test_blog PRIMARY KEY (id)
+);
+
+INSERT INTO test_blob (id, image_file)
+VALUES (1, EMPTY_BLOB());
+
+SELECT *
+FROM TEST_BLOB;
+
+-- 285p
+GRANT CREATE ANY DIRECTORY TO hr;
+
+-- 286p
+CREATE OR REPLACE DIRECTORY IMAGE_DIR AS 'C:\images';
+
+DECLARE
+    v_blob BLOB;
+    v_file BFILE := BFILENAME('IMAGE_DIR', 'korean.png');
+BEGIN
+    SELECT image_file INTO v_blob
+    FROM test_blob
+    WHERE id = 1
+    FOR UPDATE;
+
+    DBMS_LOB.OPEN(v_file, DBMS_LOB.LOB_READONLY);
+    DBMS_LOB.OPEN(v_blob, DBMS_LOB.LOB_READWRITE);
+    DBMS_LOB.LOADFROMFILE(v_blob, v_file, DBMS_LOB.GETLENGTH(v_file));
+    DBMS_LOB.CLOSE(v_file);
+    DBMS_LOB.CLOSE(v_blob);
+    COMMIT;
+END;
+
+-- 288p
+DESC employees_tmp;
+
+ALTER TABLE employees_tmp DROP COLUMN salary;
+
+-- 289p
+ALTER TABLE employees DROP COLUMN employee_id;
+
+ALTER TABLE employees_tmp ADD job_id VARCHAR2(10);
+
+-- 290p
+SELECT * FROM employees_tmp;
+
+ALTER TABLE employees_tmp DROP COLUMN job_id;
+
+ALTER TABLE employees_tmp ADD job_id VARCHAR2(10) NOT NULL;
+
+-- 291p
+ALTER TABLE employees_tmp MODIFY (email CHAR(25));
+
+-- 293p
+ALTER TABLE employees_tmp ADD job_id VARCHAR2(10);
+
+UPDATE employees_tmp 
+SET job_id = 'IT' 
+WHERE job_id IS NULL;
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_job_id_nn CHECK (job_id IS NOT NULL);
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_email_uk UNIQUE(email);
+
+-- 294p
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_pk PRIMARY KEY(employee_id);
+
+-- 295p
+ALTER TABLE employees_tmp ADD department_id NUMBER(4, 0);
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_department_id_fk
+FOREIGN KEY(department_id) REFERENCES departments(department_id);
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_salary_ck CHECK (salary > 100);
+
+-- 296p
+ALTER TABLE employees_tmp DROP CONSTRAINT emp_tmp_salary_ck;
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_salary_ck CHECK (salary >= 0);
+
+-- 297p
+TRUNCATE TABLE employees_tmp;
+
+-- 298p
+DROP TABLE employees_tmp;
+
+DROP TABLE employees_tmp;
+
+DROP TABLE test_char;
+
+-- 299p
+DROP TABLE test_date;
+
+DROP TABLE test_number;
+
+DROP TABLE test_blob;
+
+-- 303p
+CREATE VIEW employee_view AS
+SELECT employee_id, first_name, salary, hire_date, department_id
+FROM employees
+WHERE department_id IN (30, 50, 80);
+
+-- 304p
+SELECT *
+FROM employee_view;
+
+INSERT INTO employee_view (employee_id, first_name, salary, hire_date, department_id)
+VALUES (1010, 'John', 2400, SYSDATE, 60);
+
+-- 305p
+CREATE VIEW employee_view AS
+SELECT employee_id, first_name, salary, hire_date, department_id
+FROM employees
+WHERE department_id IN (30, 50, 80)
+WITH READ ONLY;
+
+-- 306p
+CREATE VIEW employee_department AS
+SELECT e.employee_id, e.first_name, e.last_name, e.department_id, d.department_name
+FROM employees e
+INNER JOIN departments d
+ON e.department_id = d.department_id
+WHERE e.department_id IN (30, 50, 80);
+
+SELECT *
+FROM employee_department;
+
+-- 307p
+INSERT INTO employee_department (employee_id, first_name, last_name, department_id, department_name)
+VALUES (1010, 'John', 'Doe', 60, 'IT');
+
+DROP VIEW employee_view;
+
+-- 308p
+DROP VIEW employee_department;
+
+-- 309p
+SELECT e.employee_id, d.department_name
+FROM (SELECT employee_id, department_id
+         FROM employees 
+         WHERE salary >= 5000
+) e
+JOIN departments d
+ON e.department_id = d.department_id;
+
+-- 310p
+SELECT d.department_name, AVG(e.salary) AS "평균 급여"
+FROM (SELECT *
+         FROM employees
+         WHERE job_id = 'SA_REP'
+) e
+JOIN departments d
+ON e.department_id = d.department_id
+GROUP BY d.department_name;
+
+-- 312p
+CREATE TABLE employees_tmp (
+    employee_id NUMBER(6),
+    first_name VARCHAR2(20),
+    last_name VARCHAR2(25),
+    email VARCHAR2(50),
+    phone_number VARCHAR2(20),
+    hire_date DATE,
+    job_id VARCHAR2(10), 
+    manager_id NUMBER(6, 0),
+    department_id NUMBER(4, 0)
+);
+
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_pk PRIMARY KEY(employee_id);
+
+-- 313p
+ALTER TABLE employees_tmp ADD CONSTRAINT emp_tmp_email_uk UNIQUE(email);
+
+-- 314p
+CREATE UNIQUE INDEX emp_tmp_phone_number_ix ON employees_tmp(phone_number);
+
+-- 316p
+ALTER INDEX emp_tmp_phone_number_ix RENAME TO emp_tmp_phone_number_ix2;
+
+ALTER INDEX emp_tmp_phone_number_ix2 UNUSABLE;
+
+ALTER INDEX emp_tmp_phone_number_ix2 REBUILD;
+
+-- 317p
+DROP INDEX emp_tmp_phone_number_ix2;
+
+-- 320p
+INSERT INTO employees (employee_id, first_name, last_name, email, hire_date, job_id, salary, department_id)
+VALUES (EMPLOYEES_SEQ.NEXTVAL, 'John', 'Doe', 'johndoe@example.com', SYSDATE, 'SA_REP', 5000, 80);
+
+SELECT EMPLOYEES_SEQ.CURRVAL 
+FROM dual;
+
+-- 321p
+SELECT *
+FROM USER_SEQUENCES
+WHERE SEQUENCE_NAME = 'EMPLOYEES_SEQ';
+
+drop sequence EMPLOYEES_SEQ;
+
+-- 323p
+CREATE SYNONYM TEST_EMP FOR EMPLOYEES;
+
+SELECT * FROM EMPLOYEES;
+
+SELECT * FROM TEST_EMP;
+
+SELECT * FROM ALL_SYNONYMS WHERE TABLE_OWNER = 'HR';
+
+-- 338p
+CREATE TABLE BOARD (
+    SEQ NUMBER(5) PRIMARY KEY,
+    TITLE VARCHAR2(200) NOT NULL,
+    WRITER VARCHAR2(50) NOT NULL,
+    CONTENT VARCHAR2(2000) NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE,
+    CNT NUMBER(5) DEFAULT 0
+);
+
+-- 340p
+package com.example;
+
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class App {
+	public static void main( String[] args ) throws SQLException {
+
+		// JDBC 1단계 : 드라이버 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+	}
+}
+
+-- 341p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+
+		if (conn != null) {
+			System.out.println("Oracle 연결 성공 : " + conn.toString());
+		}
+	}
+}
+
+
+-- 342p
+
+~ 생략 ~
+
+import java.sql.PreparedStatement;
+
+public class InsertUserTest {
+	public static void main(String[] args) {
+
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			// JDBC 1단계 : 드라이버 객체 로딩
+			DriverManager.registerDriver(new org.h2.Driver());
+
+			// JDBC 2단계 : 커넥션 연결
+			String jdbcUrl = "jdbc:h2:tcp://localhost/~/test";
+			conn = DriverManager.getConnection(jdbcUrl, "sa", "");
+
+			// JDBC 3단계 : Statement 생성
+			String sql = "insert into user values(?, ?, ?, ?)";
+			stmt = conn.prepareStatement(sql);
+
+			if(stmt != null) {
+				System.out.println("Statement 객체 : " + stmt.toString());
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+-- 344~345p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+		
+		// JDBC 3단계 : Statement 생성
+		String sql = "insert into board(seq, title, writer, content) values(?, ?, ?, ?)";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		// ? 값 설정
+		stmt.setInt(1, 1);
+		stmt.setString(2, "글 등록 테스트");
+		stmt.setString(3, "쌤즈");
+		stmt.setString(4, "글 등록 테스트 중입니다.");
+		int count = stmt.executeUpdate();
+		System.out.println(count + "건 데이터 처리 성공!");
+	}
+}
+
+-- 346p
+		~ 생략 ~
+		
+		// JDBC 4단계 : SQL 전송
+		// ? 값 설정
+		stmt.setInt(1, 2);
+		stmt.setString(2, "글 등록 테스트");
+		stmt.setString(3, "쌤즈");
+		stmt.setString(4, "글 등록 테스트 중입니다.");
+		int count = stmt.executeUpdate();
+		System.out.println(count + "건 데이터 처리 성공!");
+
+		// JDBC 5단계 : 연결 해제
+		stmt.close();
+		conn.close();
+	}
+}
+
+-- 346~347p
+
+		~ 생략 ~
+	
+		// JDBC 3단계 : Statement 생성
+		String sql = "insert into board(seq, title, writer, content) " +
+			"values((select nvl(max(seq), 0) + 1 from board), ?, ?, ?)";
+		stmt = conn.prepareStatement(sql);
+	
+		// JDBC 4단계 : SQL 전송
+		// ? 값 설정
+		//stmt.setInt(1, 2);
+		stmt.setString(1, "글 등록 테스트");
+		stmt.setString(2, "쌤즈");
+		stmt.setString(3, "글 등록 테스트 중입니다.");
+	
+		~ 생략 ~
+
+-- 347~348p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "update board set title = ?, content = ? where seq = ?";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		// ? 값 설정
+		stmt.setString(1, "--- 제목 수정");
+		stmt.setString(2, "--- 내용 수정");
+		stmt.setInt(3, 1);
+		int count = stmt.executeUpdate();
+		System.out.println(count + "건 데이터 처리 성공!");
+
+		// JDBC 5단계 : 연결 해제
+		stmt.close();
+		conn.close();
+	}
+}
+
+-- 349~350p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+		
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "delete board where seq = ?";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		// ? 값 설정
+		stmt.setInt(1, 1);
+		int count = stmt.executeUpdate();
+		System.out.println(count + "건 데이터 처리 성공!");
+
+		// JDBC 5단계 : 연결 해제
+		stmt.close();
+		conn.close();
+	}
+}
+
+
+-- 350p
+		~ 생략 ~
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "delete board";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		int count = stmt.executeUpdate();
+		System.out.println(count + "건 데이터 처리 성공!");
+
+		// JDBC 5단계 : 연결 해제
+		stmt.close();
+		conn.close();
+	}
+}
+
+-- 351p
+INSERT INTO board(SEQ, TITLE, WRITER, CONTENT) VALUE(1, '1번 게시글입니다.', '테스터', '1번 게시글 등록 성공');
+INSERT INTO board(SEQ, TITLE, WRITER, CONTENT) VALUE(2, '2번 게시글입니다.', '테스터', '2번 게시글 등록 성공');
+INSERT INTO board(SEQ, TITLE, WRITER, CONTENT) VALUE(3, '3번 게시글입니다.', '테스터', '3번 게시글 등록 성공');
+
+COMMIT;
+
+-- 351~352p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "select * from board order by seq desc";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		rs = stmt.executeQuery();
+
+		System.out.println("[ 게시글 목록 ]");
+		while(rs.next()) {
+			System.out.print(rs.getInt("SEQ") + "\t");
+			System.out.print(rs.getString("TITLE") + "\t");
+			System.out.print(rs.getString("WRITER") + "\t");
+			System.out.print(rs.getString("CONTENT") + "\t");
+			System.out.print(rs.getDate("CREATE_DATE") + "\t");
+			System.out.print(rs.getInt("CNT") + "\n");
+		}
+
+		// JDBC 5단계 : 연결 해제
+		rs.close();
+		stmt.close();
+		conn.close();
+	}
+}
+
+
+-- 354~355p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:oracle:thin:@localhost:1521:xe";
+		conn = DriverManager.getConnection(jdbcUrl, "hr", "hr");
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "select * from board where title like '%'||?||'%' order by seq desc";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		stmt.setString(1, "2번");
+		rs = stmt.executeQuery();
+
+		System.out.println("[ 게시글 목록 ]");
+		while(rs.next()) {
+			System.out.print(rs.getInt("SEQ") + "\t");
+			System.out.print(rs.getString("TITLE") + "\t");
+			System.out.print(rs.getString("WRITER") + "\t");
+			System.out.print(rs.getString("CONTENT") + "\t");
+			System.out.print(rs.getDate("CREATE_DATE") + "\t");
+			System.out.print(rs.getInt("CNT") + "\n");
+		}
+		// JDBC 5단계 : 연결 해제
+		rs.close();
+		stmt.close();
+		conn.close();
+	}
+}
+
+-- 358p
+CREATE TABLE BOARD (
+    SEQ NUMBER(5) PRIMARY KEY,
+    TITLE VARCHAR2(200) NOT NULL,
+    WRITER VARCHAR2(50) NOT NULL,
+    CONTENT VARCHAR2(2000) NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE,
+    CNT NUMBER(5) DEFAULT 0
+);
+
+-- 359p
+insert into board(seq, title, writer, content) values(1, '1번 게시글입니다.', '테스터', '1번 게시글 등록 성공');
+insert into board(seq, title, writer, content) values(2, '2번 게시글입니다.', '테스터', '2번 게시글 등록 성공');
+insert into board(seq, title, writer, content) values(3, '3번 게시글입니다.', '테스터', '3번 게시글 등록 성공');
+
+select * from board;
+
+-- 360~361p
+package com.example;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class App {
+	public static void main(String[] args) throws SQLException {
+		// JDBC 관련 변수
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		// JDBC 1단계 : 드라이버 객체 로딩
+		DriverManager.registerDriver(new oracle.jdbc.driver.OracleDriver());
+
+		// JDBC 2단계 : 커넥션 연결
+		String jdbcUrl = "jdbc:h2:tcp://localhost/~/test";
+		conn = DriverManager.getConnection(jdbcUrl, "sa", "");
+
+		// JDBC 3단계 : Statement 생성
+		String sql = "select * from board order by seq desc";
+		stmt = conn.prepareStatement(sql);
+
+		// JDBC 4단계 : SQL 전송
+		rs = stmt.executeQuery();
+
+		System.out.println("[ 게시글 목록 ]");
+		while(rs.next()) {
+			System.out.print(rs.getInt("SEQ") + "\t");
+			System.out.print(rs.getString("TITLE") + "\t");
+			System.out.print(rs.getString("WRITER") + "\t");
+			System.out.print(rs.getString("CONTENT") + "\t");
+			System.out.print(rs.getDate("CREATE_DATE") + "\t");
+			System.out.print(rs.getInt("CNT") + "\n");
+		}
+
+		// JDBC 5단계 : 연결 해제
+		rs.close();
+		stmt.close();
+		conn.close();
+	}
+}
+
